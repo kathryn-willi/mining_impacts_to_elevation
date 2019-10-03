@@ -1,6 +1,6 @@
 ---
 title: "Terrain analyses and rayshader for 3d plots"
-author: "Matthew Ross"
+author: "Matthew Ross (Kathryn Willi HW Submission)"
 date: "9/25/2019"
 output: html_document
 ---

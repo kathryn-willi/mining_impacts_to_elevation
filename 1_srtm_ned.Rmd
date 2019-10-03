@@ -1,6 +1,6 @@
 ---
 title: "Topographic Change caused by People"
-author: "Matthew Ross (Kathryn Willi HW Submission"
+author: "Matthew Ross (Kathryn Willi HW Submission)"
 date: "9/23/2019"
 output: html_document
 ---
@@ -87,7 +87,7 @@ st_crs(az_mine)
 az_raster_before <- get_elev_raster(az_mine,z=12)
 
 #Look at the structure of the data
-str(az_raster_before)
+#str(az_raster_before)
 
 #Summary of the data
 #summary(az_raster)
@@ -166,9 +166,8 @@ plot(dem_diff)
 
 # In-class work
 
-## 1) What is the maximum/minimum elevation change caused by mining?
+## 1) What is the maximum/minimum elevation change caused by mining? You may want to check out the command maxValue and minValue
 
-You may want to check out the command maxValue and minValue
 
 ```{r}
 
@@ -204,9 +203,7 @@ mapview(az_mine_buffer)
 ```
 
 
-### 2b) Use the the st_transform command to transform the 
-projection of your buffered az_mine dataset to the 
-same projection as the dem_diff raster dataset
+### 2b) Use the the st_transform command to transform the projection of your buffered az_mine dataset to the same projection as the dem_diff raster dataset
 
 hint: you may want to explore st_crs to help you here
 
@@ -223,8 +220,7 @@ projection(az_mine_buffer_reproj)
 ```
 
 
-### 2c) Use the raster::mask command to mask out all the 
-areas inside of the buffered and reprojected az_mine dataset.
+### 2c) Use the raster::mask command to mask out all the  areas inside of the buffered and reprojected az_mine dataset.
 
 hint: look at the mask command and try to understand what
 the inverse option does
@@ -238,9 +234,7 @@ mapview(unmined_dem_diff)
 ```
 
 
-### 2d) Use the summary command to look at the summary of
-differences between these two DEMs in areas where there has
-been no mining
+### 2d) Use the summary command to look at the summary of differences between these two DEMs in areas where there has been no mining
 
 ```{r}
 
@@ -248,18 +242,16 @@ summary(unmined_dem_diff)
 
 ```
 
+*Based on the Q1 and Q3 interquartile range, the differences aren't TOO substantial, but still exist. However there are some major outliers!* 
 
-## 3) What does the shape of the "error" distribution look like
-in areas that have not been mined versus areas that have
-been mined? 
+## 3) What does the shape of the "error" distribution look like in areas that have not been mined versus areas that have been mined? 
 
 To look at distributional changes, we may want to convert this
 raster dataset back into a data.frame or tibble type shape so 
 that we can take advantage of ggplots plotting capabilities and 
 make a plot of the two dems.
 
-### 3a) Mask the raster dem_diff dataset to the exact outlines of the
-USGS az_mine dataset
+### 3a) Mask the raster dem_diff dataset to the exact outlines of the USGS az_mine dataset
 
 ```{r}
 
@@ -273,9 +265,7 @@ mapview(mined_dem_diff)
 ```
 
 
-### 3b) Use the getValues command to extract the elevation
-values from both the unmined and mined regions of your rasters. 
-Label these vectors as `unmined_dem` and `mined_dem`. 
+### 3b) Use the getValues command to extract the elevation values from both the unmined and mined regions of your rasters.  Label these vectors as `unmined_dem` and `mined_dem`. 
 
 ```{r}
 unmined_dem <- getValues(unmined_dem_diff)
@@ -285,8 +275,7 @@ mined_dem <- getValues(mined_dem_diff)
 ```
 
 
-### 3c) Use ggplot and the command geom_density() to look at
-the differences in mined and unmined regions of Arizona.
+### 3c) Use ggplot and the command geom_density() to look at the differences in mined and unmined regions of Arizona.
 
 ```{r}
 # Here I'm just making the table for you
@@ -302,4 +291,6 @@ ggplot(mined_table, aes(dem_values, fill=type, color=type)) +
   
                     
 ```
+
+*As one would likely expect, there are many 'minor' differences between the two rasters in the unmined region, while there are substantial differences between the two rasters in the mined region.*
 
